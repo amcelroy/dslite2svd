@@ -10,13 +10,13 @@ categories = ["embedded"]
 license = "0BSD"
 
 [dependencies]
-bare-metal = "0.2.0"
-cortex-m = "0.6"
-vcell = "0.1.0"
+bare-metal = "1.0.0"
+cortex-m = "0.7.6"
+vcell = "0.1.3"
 
 [dependencies.cortex-m-rt]
 optional = true
-version = "0.6"
+version = "0.7.2"
 
 [features]
 rt = ["cortex-m-rt/device"]
