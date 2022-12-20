@@ -427,28 +427,18 @@ pub enum Interrupt {
     #[doc = "138 - PWM1 Fault"]
     PWM1_FAULT = 138,
 }
-// unsafe impl bare_metal::Nr for Interrupt {
-//     #[inline(always)]
-//     fn nr(&self) -> u8 {
-//         *self as u8
-//     }
-// }
+unsafe impl cortex_m::interrupt::Nr for Interrupt {
+    #[inline(always)]
+    fn nr(&self) -> u8 {
+        *self as u8
+    }
+}
 unsafe impl cortex_m::interrupt::InterruptNumber for Interrupt {
     #[inline(always)]
     fn number(self) -> u16 {
         self as u16
     }
 }
-#[cfg(feature = "rt")]
-pub use self::Interrupt as interrupt;
-pub use cortex_m::peripheral::Peripherals as CorePeripherals;
-pub use cortex_m::peripheral::{CBP, CPUID, DCB, DWT, FPB, FPU, ITM, MPU, NVIC, SCB, SYST, TPIU};
-#[cfg(feature = "rt")]
-pub use cortex_m_rt::interrupt;
-#[allow(unused_imports)]
-use generic::*;
-#[doc = r"Common register and bit access and modify traits"]
-pub mod generic;
 #[doc = "Watchdog Timer register offsets"]
 pub struct WATCHDOG0 {
     _marker: PhantomData<*const ()>,
