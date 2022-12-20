@@ -476,12 +476,18 @@ pub enum Interrupt {
     #[doc = "111 - GPIO T"]
     GPIOT = 111,
 }
-// unsafe impl bare_metal::Nr for Interrupt {
-//     #[inline(always)]
-//     fn nr(&self) -> u8 {
-//         *self as u8
-//     }
-// }
+unsafe impl cortex_m::interrupt::Nr for Interrupt {
+    #[inline(always)]
+    fn nr(&self) -> u8 {
+        *self as u8
+    }
+}
+unsafe impl cortex_m::interrupt::InterruptNumber for Interrupt {
+    #[inline(always)]
+    fn number(self) -> u16 {
+        self as u16
+    }
+}
 #[cfg(feature = "rt")]
 pub use self::Interrupt as interrupt;
 pub use cortex_m::peripheral::Peripherals as CorePeripherals;
