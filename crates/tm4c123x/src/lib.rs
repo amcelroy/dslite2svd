@@ -426,12 +426,12 @@ pub enum Interrupt {
     #[doc = "138 - PWM1 Fault"]
     PWM1_FAULT = 138,
 }
-unsafe impl cortex_m::interrupt::Nr for Interrupt {
-    #[inline(always)]
-    fn nr(&self) -> u8 {
-        *self as u8
-    }
-}
+// unsafe impl cortex_m::interrupt::Nr for Interrupt {
+//     #[inline(always)]
+//     fn nr(&self) -> u8 {
+//         *self as u8
+//     }
+// }
 unsafe impl cortex_m::interrupt::InterruptNumber for Interrupt {
     #[inline(always)]
     fn number(self) -> u16 {
