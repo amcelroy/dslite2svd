@@ -1,19 +1,14 @@
 #![doc = "Peripheral access API for TM4C123X microcontrollers (generated using svd2rust v0.17.0)\n\nYou can find an overview of the API [here].\n\n[here]: https://docs.rs/svd2rust/0.17.0/svd2rust/#peripheral-api"]
-#![deny(const_err)]
 #![deny(dead_code)]
 #![deny(improper_ctypes)]
-#![deny(legacy_directory_ownership)]
 #![deny(missing_docs)]
 #![deny(no_mangle_generic_items)]
 #![deny(non_shorthand_field_patterns)]
 #![deny(overflowing_literals)]
 #![deny(path_statements)]
 #![deny(patterns_in_fns_without_body)]
-#![deny(plugin_as_library)]
 #![deny(private_in_public)]
-#![deny(safe_extern_statics)]
 #![deny(unconditional_recursion)]
-#![deny(unions_with_drop_fields)]
 #![deny(unused_allocation)]
 #![deny(unused_comparisons)]
 #![deny(unused_parens)]
@@ -30,6 +25,16 @@ use core::marker::PhantomData;
 use core::ops::Deref;
 #[doc = r"Number available in the NVIC for configuring priority"]
 pub const NVIC_PRIO_BITS: u8 = 3;
+#[cfg(feature = "rt")]
+pub use self::Interrupt as interrupt;
+pub use cortex_m::peripheral::Peripherals as CorePeripherals;
+pub use cortex_m::peripheral::{CBP, CPUID, DCB, DWT, FPB, FPU, ITM, MPU, NVIC, SCB, SYST, TPIU};
+#[cfg(feature = "rt")]
+pub use cortex_m_rt::interrupt;
+#[allow(unused_imports)]
+use generic::*;
+#[doc = r"Common register and bit access and modify traits"]
+pub mod generic;
 #[cfg(feature = "rt")]
 extern "C" {
     fn GPIOA();
