@@ -10,7 +10,6 @@ categories = ["embedded"]
 license = "0BSD"
 
 [dependencies]
-# bare-metal = "0.2.5"
 cortex-m = "0.7.6"
 vcell = "0.1.3"
 
