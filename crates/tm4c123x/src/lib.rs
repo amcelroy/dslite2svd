@@ -422,12 +422,12 @@ pub enum Interrupt {
     #[doc = "138 - PWM1 Fault"]
     PWM1_FAULT = 138,
 }
-unsafe impl bare_metal::Nr for Interrupt {
-    #[inline(always)]
-    fn nr(&self) -> u8 {
-        *self as u8
-    }
-}
+// unsafe impl bare_metal::Nr for Interrupt {
+//     #[inline(always)]
+//     fn nr(&self) -> u8 {
+//         *self as u8
+//     }
+// }
 #[cfg(feature = "rt")]
 pub use self::Interrupt as interrupt;
 pub use cortex_m::peripheral::Peripherals as CorePeripherals;
